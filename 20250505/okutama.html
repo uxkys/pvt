@@ -2,138 +2,163 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>奥多摩日帰りプラン | 2025年5月5日(月)</title>
+  <title>奥多摩 Day Trip | 2025-05-05</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Google Fonts ＊オフラインでも問題ないように system font もフォールバック -->
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg:#fffafa;
-      --card:#ffffff;
-      --accent:#a2d2ff;
-      --text:#333631;      /* 全文共通テキスト色 */
-      --border:#dfe3e8;
-      --radius:12px;
-      --shadow:0 4px 10px rgba(0,0,0,.05);
-    }
+  /* ===== カラーパレット ===== */
+  :root{
+    --c-bg: #fafbf8;          /* ページ背景（ややアイボリー）           */
+    --c-primary: #3a5d47;     /* 森をイメージした深緑                    */
+    --c-accent: #a0c8b2;      /* 明るいミントグリーン（アクセント）      */
+    --c-text: #2f302d;        /* 標準テキスト                            */
+    --c-muted: #7d807a;       /* 説明テキストやフッターなど              */
+    --radius: 14px;
+    --shadow: 0 6px 18px rgba(0,0,0,.08);
+  }
 
-    /* ---------- 基本 ---------- */
-    html,body{
-      margin:0;
-      padding:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,
-                  "Noto Sans JP","Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
-      line-height:1.6;
-    }
+  /* ===== Reset / ベース ===== */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{
+    margin:0; padding:0;
+    font-family:'Figtree',-apple-system,BlinkMacSystemFont,
+                'Noto Sans JP','Segoe UI',Roboto,Meiryo,sans-serif;
+    color:var(--c-text);
+    background:var(--c-bg);
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    /* ---------- ヘッダー ---------- */
-    header{
-      background:var(--accent);
-      padding:2rem 1rem;
-      text-align:center;
-    }
-    header h1{
-      margin:0;
-      font-size:1.8rem;
-      letter-spacing:.05em;
-      line-height:1.3;
-      color:#2a4073;      /* ← タイトルだけ個別カラー */
-    }
+  a{ color:var(--c-accent); text-decoration:none; }
+  img{ max-width:100%; display:block; }
 
-    /* ---------- 本文 ---------- */
-    main{
-      max-width:720px;
-      margin:2rem auto;
-      padding:0 1rem;
-    }
+  /* ===== ヒーローセクション ===== */
+  .hero{
+    position:relative;
+    height:55vh;
+    min-height:320px;
+    background:url('img/IA-photo.png') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  /* フィルター＋グラデーションで文字が読みやすいように */
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+      to bottom,
+      rgba(0,0,0,.25) 0%,
+      rgba(0,0,0,.45) 60%,
+      rgba(0,0,0,.65) 100%
+    );
+  }
+  .hero-title{
+    position:relative;
+    color:#fff;
+    text-align:center;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    font-weight:600;
+    line-height:1.25;
+    letter-spacing:.05em;
+    padding:0 1rem;
+  }
 
-    /* タイムライン */
-    .timeline{
-      list-style:none;
-      margin:0;
-      padding:0;
-      position:relative;
-    }
-    .timeline::before{
-      content:"";
-      position:absolute;
-      left:24px;
-      top:0;
-      bottom:0;
-      width:2px;
-      background:var(--border);
-    }
-    .event{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:1rem 1.5rem 1rem 4.5rem;
-      margin-bottom:1rem;
-      position:relative;
-    }
-    .event::before{
-      content:"";
-      position:absolute;
-      left:17px;
-      top:1.2rem;
-      width:14px;
-      height:14px;
-      background:var(--accent);
-      border-radius:50%;
-    }
-    .time{
-      font-weight:600;
-      margin-bottom:.25rem;
-    }
-    .desc{
-      margin:0;
-    }
+  /* ===== スケジュールタイムライン ===== */
+  .timeline{
+    max-width:720px;
+    margin:-4rem auto 4rem;   /* ヒーローとかぶせる感じに浮かせる */
+    padding:2rem 1rem 1rem;
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  .timeline h2{
+    margin:0 0 1.5rem;
+    text-align:center;
+    color:var(--c-primary);
+    font-size:1.4rem;
+  }
 
-    /* ---------- フッター ---------- */
-    footer{
-      text-align:center;
-      font-size:.85rem;
-      color:#666;
-      padding:2rem 1rem;
-    }
+  .event{
+    display:grid;
+    grid-template-columns:88px 1fr;
+    column-gap:1.5rem;
+    padding:1rem 0;
+    border-bottom:1px solid #e8ece7;
+  }
+  .event:last-child{ border-bottom:none; }
+
+  .time{
+    font-weight:600;
+    color:var(--c-primary);
+    font-size:1.05rem;
+  }
+  .place{ margin:0; font-weight:600; }
+  .desc{ margin:.25rem 0 0; color:var(--c-muted); }
+
+  /* ===== フッター ===== */
+  footer{
+    text-align:center;
+    padding:3rem 1rem 2rem;
+    font-size:.85rem;
+    color:var(--c-muted);
+  }
   </style>
 </head>
 
 <body>
-  <header>
-    <h1>奥多摩日帰りプラン<br>2025年5月5日(月)</h1>
+
+  <!-- Hero -->
+  <header class="hero">
+    <h1 class="hero-title">奥多摩<br>2025-05-05</h1>
   </header>
 
-  <main>
-    <ul class="timeline">
-      <li class="event">
-        <p class="time">08:00　東京駅 発</p>
-        <p class="desc">中央線快速で奥多摩へ移動</p>
-      </li>
+  <!-- Timeline -->
+  <section class="timeline">
+    <h2>Itinerary</h2>
 
-      <li class="event">
-        <p class="time">10:30　奥多摩「釜めしなかい」着</p>
+    <div class="event">
+      <div class="time">08:00</div>
+      <div>
+        <p class="place">東京駅 発</p>
+        <p class="desc">車で奥多摩へ</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="time">10:30</div>
+      <div>
+        <p class="place">奥多摩「釜めしなかい」着</p>
         <p class="desc">近くの川で遊ぶ</p>
-      </li>
+      </div>
+    </div>
 
-      <li class="event">
-        <p class="time">11:30　奥多摩「釜めしなかい」</p>
-        <p class="desc">昼食（釜めし）</p>
-      </li>
+    <div class="event">
+      <div class="time">11:30</div>
+      <div>
+        <p class="place">奥多摩「釜めしなかい」</p>
+        <p class="desc">釜めしランチ</p>
+      </div>
+    </div>
 
-      <li class="event">
-        <p class="time">12:30　奥多摩「釜めしなかい」 発</p>
+    <div class="event">
+      <div class="time">12:30</div>
+      <div>
+        <p class="place">奥多摩「釜めしなかい」 発</p>
         <p class="desc">午後のプランは未定</p>
-      </li>
-    </ul>
+      </div>
+    </div>
 
-    <p style="text-align:center; font-style:italic;">※ この先の予定はまだ未定です。</p>
-  </main>
+  </section>
 
   <footer>
-    <p>© 2025 buz</p>
+    © 2025 buz
   </footer>
+
 </body>
 </html>
